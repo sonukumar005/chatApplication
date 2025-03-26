@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun SignInScreen(
     modifier: Modifier = Modifier.fillMaxSize(),
+    onClick: () -> Unit = {},
 
 
     ) {
@@ -40,7 +41,7 @@ fun SignInScreen(
             fontWeight = FontWeight.Bold,
             fontSize = 30.sp,
             modifier = Modifier.clickable(
-                onClick = {},
+                onClick = onClick,
 
             )
         )

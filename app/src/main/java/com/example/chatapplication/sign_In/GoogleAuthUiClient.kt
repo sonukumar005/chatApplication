@@ -3,6 +3,9 @@ package com.example.chatapplication.sign_In
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
+import com.example.chatapplication.DATA.SignInResult
+import com.example.chatapplication.DATA.UserData
+import com.example.chatapplication.viewModel.chatApkViewModel
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
 import com.google.android.gms.auth.api.identity.SignInClient
@@ -14,8 +17,9 @@ import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.cancellation.CancellationException
 
 class GoogleAuthUiClient(
-    private val context: Context,
+    private val context: Context?,
     private val oneTapClient: SignInClient,
+    val viewModel: chatApkViewModel
 
     ) {
     private val auth = Firebase.auth
@@ -41,8 +45,9 @@ class GoogleAuthUiClient(
                 data = user?.run {
                     UserData(
                         userId = uid,
-                        username = displayName,
-                        profilePictureUrl = photoUrl?.toString()
+                        username = displayName.toString(),
+                        purl = photoUrl?.toString(),
+                        email = email.toString()
                     )
                 },
                 errorMessage = null
@@ -69,8 +74,9 @@ class GoogleAuthUiClient(
     fun getSignedInUser(): UserData? = auth.currentUser?.run {
         UserData(
             userId = uid,
-            username = displayName,
-            profilePictureUrl = photoUrl?.toString()
+            username = displayName.toString(),
+            purl = photoUrl?.toString(),
+            email = email.toString()
         )
     }
 

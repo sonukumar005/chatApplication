@@ -1,4 +1,4 @@
-package com.example.chatapplication.sign_In
+package com.example.chatapplication.DATA
 
 data class SignInResult(
     val data: UserData?,
@@ -7,6 +7,7 @@ data class SignInResult(
 
 data class UserData(
     val userId: String,
-    val username: String?,
-    val profilePictureUrl: String?
+    val username: String,
+    val purl: String?,
+    val email: String?
 )
